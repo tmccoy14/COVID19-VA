@@ -13,20 +13,14 @@ from sqlalchemy.orm import sessionmaker
 """Internal application modules"""
 from src.main import pass_environment
 
+# from src.lib import create_table
+
 
 engine = create_engine(
     os.environ.get("DATABASE_URL", "postgresql://postgres@localhost/covid_db")
 )
 Session = scoped_session(sessionmaker(bind=engine))
 Base = declarative_base()
-
-
-@click.group(
-    "virginia", short_help="Ingest the Virginia Covid-19 case data.",
-)
-@pass_environment
-def cli(ctx):
-    """Data ingestion of all covid-19 va data"""
 
 
 class VaCovid(Base):
@@ -42,13 +36,15 @@ class VaCovid(Base):
     total_cases = Column(String(6), nullable=True)
 
 
-@cli.command("virginia", short_help="Ingest VA Covid-19 cases.")
+@click.command("ingest", short_help="Ingest the Virginia Covid-19 case data.")
 @click.option("--filepath", required=True, help="Covid-19 Virginia dataset filepath.")
 @pass_environment
-def ingest(ctx, filepath):
-    ctx.log("Ingesting fund center data...")
+def cli(ctx, filepath):
+    """Data ingestion of all covid-19 va data"""
 
-    with open(filepath, newline="") as csvfile:
+    ctx.log("Ingesting Covid-19 Virginia Cases...")
+
+    with open(filepath, newline="", encoding="utf-8-sig") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             report_date = row.get("Report Date")
