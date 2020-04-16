@@ -14,7 +14,7 @@ HOME = str(Path.home())
 def print_version(ctx, param, value):
     if not value or ctx.resilient_parsing:
         return
-    click.secho("API version: v%s" % VERSION, fg="blue")
+    click.secho("covid version: v%s" % VERSION, fg="blue")
     ctx.exit()
 
 

@@ -12,7 +12,7 @@ def create_tables():
             fips VARCHAR(255) NOT NULL,
             locality VARCHAR(255) NOT NULL,
             health_district VARCHAR(255) NOT NULL,
-            total_cases VARCHAR(255) NOT NULL
+            total_cases INTEGER NOT NULL
         )
         """,
     )

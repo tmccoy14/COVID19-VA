@@ -13,9 +13,6 @@ from sqlalchemy.orm import sessionmaker
 """Internal application modules"""
 from src.main import pass_environment
 
-# from src.lib import create_table
-
-
 engine = create_engine(
     os.environ.get("DATABASE_URL", "postgresql://postgres@localhost/covid_db")
 )
@@ -33,18 +30,19 @@ class VaCovid(Base):
     fips = Column(String(5), nullable=False, unique=True)
     locality = Column(String(50), nullable=True)
     health_district = Column(String(50), nullable=True)
-    total_cases = Column(String(6), nullable=True)
+    total_cases = Column(Integer, nullable=True)
 
 
 @click.command("ingest", short_help="Ingest the Virginia Covid-19 case data.")
-@click.option("--filepath", required=True, help="Covid-19 Virginia dataset filepath.")
 @pass_environment
-def cli(ctx, filepath):
+def cli(ctx):
     """Data ingestion of all covid-19 va data"""
 
     ctx.log("Ingesting Covid-19 Virginia Cases...")
 
-    with open(filepath, newline="", encoding="utf-8-sig") as csvfile:
+    with open(
+        "data/VDH-COVID-19-PublicUseDataset-Cases.csv", newline="", encoding="utf-8-sig"
+    ) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             report_date = row.get("Report Date")

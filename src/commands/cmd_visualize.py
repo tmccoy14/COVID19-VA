@@ -1,8 +1,9 @@
 """Third party modules"""
 import click
-import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
-import csv
+import matplotlib.pyplot as plt
+import squarify
 
 # import pandas as pd
 # import matplotlib.pyplot as plt
@@ -18,29 +19,29 @@ def cli(ctx):
 
     ctx.log("Visualizig Covid-19 Virginia Cases...")
 
-    df = pd.read_csv("data/VDH-COVID-19-PublicUseDataset-Cases.csv", sep=",")
+    data = pd.read_csv("data/VDH-COVID-19-PublicUseDataset-Cases.csv")
 
-    d = dict(zip(df.index, df.values.tolist()))
+    location = data["Locality"]
+    cases = data["Total Cases"]
 
-    df.plot.bar(x="Locality", y=["Total Cases"])
-    plt.title("Virginia Covid-19 Cases To Date")
-    plt.ylabel("Total Cases")
-    plt.xlabel("Locality")
-    plt.tick_params(width=2)
+    x = []
+    y = []
+
+    x = list(location)
+    y = list(cases)
+
+    # Make fake dataset
+    height = y
+    bars = x
+    y_pos = np.arange(len(bars))
+
+    # Create horizontal bars
+    plt.barh(y_pos, height)
+
+    # Create names on the y-axis
+    plt.yticks(y_pos, bars)
+
+    plt.autoscale(enable=True)
+
+    # Show graphic
     plt.show()
-
-    # x = []
-    # y = []
-
-    # with open("data/VDH-COVID-19-PublicUseDataset-Cases.csv", "r") as csvfile:
-    #     plots = csv.reader(csvfile, delimiter=",")
-    #     for row in plots:
-    #         x.append((row[2]))
-    #         y.append((row[4]))
-
-    # plt.plot(x, y, label="Loaded from file!")
-    # plt.xlabel("x")
-    # plt.ylabel("y")
-    # plt.title("Interesting Graph\nCheck it out")
-    # plt.legend()
-    # plt.show()

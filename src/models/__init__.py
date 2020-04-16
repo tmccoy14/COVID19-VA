@@ -10,4 +10,4 @@ class VaCovid(db.Model):
     fips = db.Column(db.String(5), nullable=False)
     locality = db.Column(db.String(50), nullable=False)
     health_district = db.Column(db.String(50), nullable=False)
-    total_cases = db.Column(db.String(6), nullable=False)
+    total_cases = db.Column(db.Integer, nullable=False)
