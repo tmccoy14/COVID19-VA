@@ -20,14 +20,6 @@ Session = scoped_session(sessionmaker(bind=engine))
 Base = declarative_base()
 
 
-@click.group(
-    "virginia", short_help="List the Virginia Covid-19 case data.",
-)
-@pass_environment
-def cli(ctx):
-    """Data listing of all covid-19 va data."""
-
-
 class VaCovid(Base):
     """VaCovid models the va_covid table that will be necessary for
     interacting with datasets involved in coronavirus."""
@@ -41,10 +33,13 @@ class VaCovid(Base):
     total_cases = Column(String(6), nullable=True)
 
 
-@cli.command("list")
+@click.command("list", short_help="List the Virginia Covid-19 case data.")
 @pass_environment
-def list(ctx):
-    ctx.log("Finding all VA Covid-19 cases...")
+def cli(ctx):
+    """Data visualization of all covid-19 va data."""
+
+    ctx.log("Listing Covid-19 Virginia Cases...")
+
     values = Session.query(VaCovid).all()
 
     results = [
