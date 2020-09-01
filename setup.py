@@ -6,7 +6,7 @@ setup(
     description="Covid is a tool to help ingest, serve, and visualize Virginia Coronavirus data.",
     author="Tucker McCoy",
     author_email="tuckermmccoy@gmail.com",
-    keywords="covid-19 virginia python data automation",
+    keywords="covid-19 virginia python data automation docker",
     packages=find_packages(exclude=["tests"]),
     install_requires=[
         "Click==7.0",
