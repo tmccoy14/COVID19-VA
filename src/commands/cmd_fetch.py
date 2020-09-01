@@ -1,7 +1,9 @@
+"""Standard library"""
+import os
+
 """Third party modules"""
 import click
 import wget
-import os
 
 """Internal application modules"""
 from src.main import pass_environment

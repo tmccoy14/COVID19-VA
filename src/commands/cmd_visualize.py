@@ -5,9 +5,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import squarify
 
-# import pandas as pd
-# import matplotlib.pyplot as plt
-
 """Internal application modules"""
 from src.main import pass_environment
 
