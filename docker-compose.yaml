@@ -1,6 +1,6 @@
 version: "2.4"
 services:
-  covid:
+  app:
     image: covid19-va:0.1.0
     ports:
       - 5000:5000
