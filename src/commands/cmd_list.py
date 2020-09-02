@@ -14,7 +14,7 @@ from src.main import pass_environment
 
 
 engine = create_engine(
-    os.environ.get("DATABASE_URL", "postgresql://postgres@localhost/covid_db")
+    os.environ.get("DATABASE_URL", "postgresql://postgres:password@postgres/covid_db")
 )
 Session = scoped_session(sessionmaker(bind=engine))
 Base = declarative_base()

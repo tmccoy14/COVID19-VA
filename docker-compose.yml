@@ -1,7 +1,8 @@
 version: "2.4"
 services:
   app:
-    image: covid19-va:0.1.0
+    image: covid19-va:0.1.2
+    command: tail -F anything
     ports:
       - 5000:5000
     depends_on:
@@ -20,3 +21,5 @@ services:
       covid-main:
         aliases:
           - postgres
+networks:
+  covid-main:
