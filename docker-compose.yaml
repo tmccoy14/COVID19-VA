@@ -1,0 +1,22 @@
+version: "2.4"
+services:
+  covid:
+    image: covid19-va:0.1.0
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    networks:
+      covid-main:
+        aliases:
+          - localhost
+  db:
+    image: postgres:9.6
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=password
+    networks:
+      covid-main:
+        aliases:
+          - postgres
