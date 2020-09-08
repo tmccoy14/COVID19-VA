@@ -14,4 +14,8 @@ from src.database import init_db
 def cli(ctx):
     """Create the table for covid-19 va data"""
 
+    ctx.log("Creating Covid-19 Database Tables...")
+
     init_db()
+
+    ctx.log("Done...")

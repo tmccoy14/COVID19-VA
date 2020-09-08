@@ -25,3 +25,4 @@ def cli(ctx):
         "data/VDH-COVID-19-PublicUseDataset-Cases.csv",
     )
 
+    ctx.log("Done...")
