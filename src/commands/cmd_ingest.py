@@ -8,7 +8,8 @@ import click
 
 """Internal application modules"""
 from src.main import pass_environment
-from src import DB, VaCovid
+from src.database import db_session
+from src.models import VaCovid
 
 
 @click.command("ingest", short_help="Ingest the Virginia Covid-19 case data.")
@@ -29,7 +30,7 @@ def cli(ctx):
             health_district = capwords(row.get("Health District", "").lower())
             total_cases = capwords(row.get("Total Cases", "").lower())
 
-            DB.Session.add(
+            db_session.add(
                 VaCovid(
                     report_date=report_date,
                     fips=fips,
@@ -38,6 +39,6 @@ def cli(ctx):
                     total_cases=total_cases,
                 )
             )
-            DB.Session.commit()
+            db_session.commit()
 
     ctx.log("Done...")

@@ -8,7 +8,8 @@ from tabulate import tabulate
 
 """Internal application modules"""
 from src.main import pass_environment
-from scr import DB, VaCovid
+from src.database import db_session
+from src.models import VaCovid
 
 
 @click.command("list", short_help="List the Virginia Covid-19 case data.")
@@ -18,7 +19,7 @@ def cli(ctx):
 
     ctx.log("Listing Covid-19 Virginia Cases...")
 
-    values = DB.Session.query(VaCovid).order_by(desc("total_cases"))
+    values = db_session.query(VaCovid).order_by(desc("total_cases"))
 
     results = [
         [

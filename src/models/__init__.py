@@ -1,13 +1,19 @@
-import datetime
+"""Third party modules"""
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 
-from src.server.extensions import db
+"""Internal application modules"""
+from src.database import Base
 
 
-class VaCovid(db.Model):
+class VaCovid(Base):
+    """VaCovid models the va_covid table that will be necessary for
+    interacting with datasets involved in coronavirus."""
+
     __tablename__ = "va_covid"
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    report_date = db.Column(db.String(10), nullable=False)
-    fips = db.Column(db.String(5), nullable=False)
-    locality = db.Column(db.String(50), nullable=False)
-    health_district = db.Column(db.String(50), nullable=False)
-    total_cases = db.Column(db.Integer, nullable=False)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    report_date = Column(String(10), nullable=False, unique=False)
+    fips = Column(String(5), nullable=False, unique=True)
+    locality = Column(String(50), nullable=True)
+    health_district = Column(String(50), nullable=True)
+    total_cases = Column(Integer, nullable=True)
