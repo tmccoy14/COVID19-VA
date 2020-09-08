@@ -11,7 +11,7 @@ from src.database import db_session
 from src.models import VaCovid
 
 
-@click.command("total", short_help="List the Virginia Covid-19 case data.")
+@click.command("total", short_help="Get the total Virginia Covid-19 case data.")
 @click.option(
     "--locality", "-l", required=False, help="Virginia Locality.",
 )

@@ -16,7 +16,7 @@ def cli(ctx):
 
     ctx.log("Fetching Covid-19 Virginia Cases...")
 
-    url = "http://www.vdh.virginia.gov/content/uploads/sites/182/2020/03/VDH-COVID-19-PublicUseDataset-Cases.csv"
+    url = "https://data.virginia.gov/api/views/bre9-aqqr/rows.csv?accessType=DOWNLOAD"
 
     filename = wget.download(url)
 
