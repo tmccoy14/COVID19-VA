@@ -12,7 +12,7 @@ setup(
         "Click==7.0",
         "colorama==0.4.1",
         "Flask==1.1.1",
-        "Flask-Cors==3.0.8",
+        "Flask-Cors==3.0.9",
         "Flask-Migrate==2.5.3",
         "flask-restx==0.2.0",
         "Flask-SQLAlchemy==2.4.1",
