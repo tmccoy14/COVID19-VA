@@ -14,7 +14,7 @@ setup(
         "Flask==1.1.1",
         "Flask-Cors==3.0.8",
         "Flask-Migrate==2.5.3",
-        "flask-restx==0.2.0",
+        "flask-restx==0.5.1",
         "Flask-SQLAlchemy==2.4.1",
         "gevent==1.4.0",
         "pandas==1.0.3",
